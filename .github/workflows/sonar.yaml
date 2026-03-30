@@ -35,8 +35,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
             -Dsonar.sources=src
             -Dsonar.tests=src
             -Dsonar.test.inclusions=src/**/*.test.ts,src/**/*.test.tsx
@@ -44,3 +44,14 @@ jobs:
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.typescript.tsconfigPath=tsconfig.app.json
             -Dsonar.qualitygate.wait=true
+
+      - name: Sonar report link
+        if: always()
+        env:
+          PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
+        run: |
+          if [ -n "$PROJECT_KEY" ]; then
+            echo "Sonar report: https://sonarcloud.io/summary/new_code?id=${PROJECT_KEY}&branch=${GITHUB_REF_NAME}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Define SONAR_PROJECT_KEY as an environment variable (not secret) to show the report link here." >> $GITHUB_STEP_SUMMARY
+          fi
