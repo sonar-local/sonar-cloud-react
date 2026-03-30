@@ -10,6 +10,7 @@ on:
 jobs:
   sonar:
     runs-on: ubuntu-latest
+    environment: SONAR_ENV
     steps:
       - uses: actions/checkout@v4
         with:
