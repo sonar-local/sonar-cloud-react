@@ -2,7 +2,6 @@
 import { expect, test } from 'vitest'
 
 test('main.tsx sets up the root element correctly', () => {
-  // Create a root div element
   const root = document.createElement('div')
   root.id = 'root'
   document.body.appendChild(root)
@@ -15,12 +14,10 @@ test('main.tsx sets up the root element correctly', () => {
 })
 
 test('main.tsx mounts the application in the root element', async () => {
-  // Create a root div element
   const root = document.createElement('div')
   root.id = 'root'
   document.body.appendChild(root)
 
-  // Import main after creating the root element
   await import('./main')
 
   expect(document.getElementById('root')).toBeTruthy()
