@@ -43,3 +43,4 @@ jobs:
             -Dsonar.exclusions=**/coverage/**,**/*.test.*
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.typescript.tsconfigPath=tsconfig.app.json
+            -Dsonar.qualitygate.wait=true
