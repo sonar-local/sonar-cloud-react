@@ -9,8 +9,15 @@ permissions:
   contents: read
 
 jobs:
+  test:
+    uses: sonar-local/workflows/.github/workflows/reusable-node-test.yml@v2
+    with:
+      node_version: "22"
+      test_command: yarn test
+
   sonar:
-    uses: sonar-local/workflows/.github/workflows/sonar-reusable.yml@v1
+    needs: test
+    uses: sonar-local/workflows/.github/workflows/reusable-sonar-scan.yml@v2
     with:
       sonar_project_key: ${{ vars.SONAR_PROJECT_KEY }}
       sonar_organization: ${{ vars.SONAR_ORGANIZATION }}
