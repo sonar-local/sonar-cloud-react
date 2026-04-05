@@ -1,0 +1,14 @@
+name: Sonar (consume reusable)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sonar:
+    uses: sacm1046/workflows/.github/workflows/sonar-reusable.yml@main
+    with:
+      sonar_project_key: ${{ vars.SONAR_PROJECT_KEY }}
+      sonar_organization: ${{ vars.SONAR_ORGANIZATION }}
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
