@@ -6,7 +6,7 @@ on:
 
 jobs:
   sonar:
-    uses: sacm1046/workflows/.github/workflows/sonar-reusable.yml@main
+    uses: sonar-local/workflows/.github/workflows/sonar-reusable.yml@main
     with:
       sonar_project_key: ${{ vars.SONAR_PROJECT_KEY }}
       sonar_organization: ${{ vars.SONAR_ORGANIZATION }}
