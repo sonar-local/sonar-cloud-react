@@ -4,9 +4,13 @@ on:
   push:
     branches: [main]
 
+permissions:
+  pull-requests: read
+  contents: read
+  
 jobs:
   sonar:
-    uses: sonar-local/workflows/.github/workflows/sonar-reusable.yml@d2d086100879e4c0866cd9798d60d66c294fdeae
+    uses: sonar-local/workflows/.github/workflows/sonar-reusable.yml@main
     with:
       sonar_project_key: ${{ vars.SONAR_PROJECT_KEY }}
       sonar_organization: ${{ vars.SONAR_ORGANIZATION }}
