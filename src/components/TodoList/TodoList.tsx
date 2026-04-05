@@ -36,7 +36,7 @@ function TodoList() {
                 editing: false
             }
             setTodos(prev => [...prev, newTodo])
-            setInput('')
+            setInput('') 
         }
     }
 
